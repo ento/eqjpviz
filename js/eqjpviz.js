@@ -1,43 +1,11 @@
-var Widget = (function() {
-    var label = function(paper, x, y, text) {
-        var _background = paper.rect(x, y, 0, 0);
-        var _padding = 6;
-        var _text = paper.text(x, y, text);
-        _text.attr("text-anchor", "middle");
-        var _bbox;
-
-        var setText = function (text) {
-            _text.attr("text", text);
-            _bbox = _text.getBBox();
-            _background.attr({
-                x: _text.attr("x") - _bbox.width * 0.5 - _padding,
-                y: _text.attr("y") - _bbox.height * 0.5 - _padding,
-                width: _bbox.width + _padding * 2,
-                height: _bbox.height + _padding * 2,
-            });
-        };
-        setText(text);
-
-        return {
-            setText: setText,
-            bg: _background,
-            text: _text,
-        }
-    };
-
-    return {
-        label: label,
-    }
-})();
-
 function EQJPOverlay(bounds, map) {
-
     this.bounds_ = bounds;
     this.paper_ = null;
     this.now_label_ = null;
     this.setMap(map);
 
 }
+
 EQJPOverlay.prototype = new google.maps.OverlayView();
 
 EQJPOverlay.prototype.onRemove = function() {
@@ -139,7 +107,7 @@ function dayAsMsec(days) {
     return days * 24 * 60 * 60 * 1000.0;
 }
 
-function to_localtime(dt) {
+function toLocalTime(dt) {
     if (!dt) {
         return;
     }
@@ -184,8 +152,8 @@ function pickMagnitudeColor(ratio) {
 /* -------------------------- the protagonist -------------------------- */
 
 var EQJPViz = (function (){
-    var map_width_ = 500;
-    var map_height_ = map_width_ * 0.8;
+    var map_width = 500;
+    var map_height = map_width * 0.8;
     var data_points = [];
     var daterange_msec = dayAsMsec(10);
     var daterange_start = (new Date()).getTime() - daterange_msec;
@@ -220,14 +188,14 @@ var EQJPViz = (function (){
         var useragent = navigator.userAgent;
         if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
             $content.css({width: '100%'});
-            map_width_ = $content.width() * 0.9;
-            map_height_ = map_width_ * 0.8;
-            $mapdiv.width(map_width_);
+            map_width = $content.width() * 0.9;
+            map_height = map_width * 0.8;
+            $mapdiv.width(map_width);
         } else {
-            $content.width(map_width_);
+            $content.width(map_width);
         }
 
-        $mapdiv.css({width: map_width_, height: map_height_});
+        $mapdiv.css({width: map_width, height: map_height});
 
         var center = new google.maps.LatLng(lat, lon);
         map = new google.maps.Map(document.getElementById("map_canvas"), {
@@ -309,7 +277,7 @@ var EQJPViz = (function (){
 
     var datetimeToPixelX = function(dt) {
         var msec = dt.getTime();
-        var unit_pixel = map_width_ / slider_max;
+        var unit_pixel = map_width / slider_max;
         var unit_msec = daterange_msec / slider_max;
         return ((msec - daterange_start) / unit_msec) * unit_pixel;
     };
@@ -359,7 +327,7 @@ var EQJPViz = (function (){
             var m = m_all[i];
             y.push(lines[m]);
         }
-        var series = incidentChart.g.linechart(0, 0, map_width_, 40, xaxis, y);
+        var series = incidentChart.g.linechart(0, 0, map_width, 40, xaxis, y);
         for (var i in m_all) {
             var m = m_all[i];
             series.lines[i].attr({"stroke": magnitudeToColor(m), "stroke-width": 1});
@@ -373,9 +341,9 @@ var EQJPViz = (function (){
         var unitMsec = 1000 * 60 * 60 * 6;
         var end = daterange_start + daterange_msec;
         var here = Math.ceil(daterange_start / unitMsec) * unitMsec;
-        var unitX = map_width_ / (daterange_msec / unitMsec);
+        var unitX = map_width / (daterange_msec / unitMsec);
         while (here < end) {
-            var dt = to_localtime(new Date(here));
+            var dt = toLocalTime(new Date(here));
             var hour = dt.getHours();
             var x = datetimeToPixelX(dt);
             var label = dateChart.text(0, 0, DateFormatter.format(dt, "Y/m/d H:i"));
@@ -430,8 +398,8 @@ var EQJPViz = (function (){
         map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(container.get(0));
         
         magnitudeChart = Raphael(container.get(0), "100%", "100%");
-        var margin = map_height_ * 0.15;
-        var unitY = (map_height_ - margin * 2) / (mag_max - mag_min);
+        var margin = map_height * 0.15;
+        var unitY = (map_height - margin * 2) / (mag_max - mag_min);
         var x = 18;
         for (var m = mag_max; m >= mag_min; m--) {
             var y = margin + (mag_max - m) * unitY;
@@ -480,7 +448,7 @@ var EQJPViz = (function (){
         var val = ui.value;
         var now = daterange_start + (daterange_msec * val / 100);
 
-        dateLabelControl.text(DateFormatter.format(to_localtime(new Date(now)), "Y/m/d(J) H:i #J#S#T"));
+        dateLabelControl.text(DateFormatter.format(toLocalTime(new Date(now)), "Y/m/d(J) H:i #J#S#T"));
 
         overlay.now_msec_ = now;
         overlay.draw.apply(overlay);
