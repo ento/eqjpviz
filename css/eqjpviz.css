@@ -77,3 +77,15 @@ svg {
     display: inline-block;
     margin: 0 3px;
 }
+
+#forkme {
+    background-color: #a00;
+    color: #fff;
+    font-family: 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    padding: 0.2em 0.5em;
+    text-align: center;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
