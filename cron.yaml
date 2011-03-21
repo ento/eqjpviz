@@ -1,0 +1,7 @@
+cron:
+- description: kick details
+  url: /worker/kick_details
+  schedule: every 1 minutes
+- description: kick scrape list
+  url: /worker/kick_list
+  schedule: every 5 minutes

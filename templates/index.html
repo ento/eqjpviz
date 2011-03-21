@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+    <script type="text/javascript" src="dataset.js"></script>
+    <script type="text/javascript" src="js/raphael.min.js"></script>
+    <script type="text/javascript" src="js/graphael.min.js"></script>
+    <script type="text/javascript" src="js/graphael-line.min.js"></script>
+    <script type="text/javascript" src="js/DateFormatter.js"></script>
+    <script type="text/javascript" src="js/eqjpviz.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#last_update").text(""+to_localtime({{scrape_list_ran_at|js_date}}));
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/cupertino/jquery-ui-1.8.10.custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/eqjpviz.css" />
+    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">	
+    <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+  </head>
+  <body>
+    <div id="header">
+      最終更新: <span id="last_update">unknown</span>
+    </div>
+    <div id="content">
+      <div id="map_canvas" style="width: 500px; height: 500px;"></div>
+      <div id="slider_container"></div>
+      <div id="facts">
+        <div id="incident_chart" class="fact_chart"></div>
+        <div id="daynight_chart" class="fact_chart"></div>
+        <div id="date_chart" class="fact_chart"></div>
+<!--        <div id="magnitude_chart" class="fact_chart"></div> -->
+      </div>
+      <div id="footer" style="clear: both;">
+        <ul>
+          <li><a href="http://tenki.jp">tenki.jp</a></li>
+          <li><a href="http://code.google.com/apis/maps/documentation/javascript/">Google Maps JavaScript API V3</a></li>
+          <li><a href="http://jquery.com/">jQuery 1.5.1</a></li>
+          <li><a href="http://jqueryui.com/">jQuery UI 1.8.10</a></li>
+          <li><a href="http://raphaeljs.com/">Raphaël 1.5.2</a></li>
+          <li><a href="http://g.raphaeljs.com/">gRaphaël 0.4.1</a></li>
+          <li><a href="http://code.google.com/appengine/">Google App Engine</a></li>
+          <li><a href="http://twitter.com/ento">@ento</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

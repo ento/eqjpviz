@@ -1,0 +1,79 @@
+#content {
+    width: 500px;
+}
+
+#map_canvas {
+    margin: 0 auto;
+}
+
+#map_overlay {
+    position: absolute;
+    border: none;
+    border-width: 0px;
+}
+
+#playback_control {
+    position: relative;
+    width: 80%;
+    height: 1.2em;
+    padding-bottom: 10%;
+}
+
+#play {
+    width: 10%;
+    height: 1.5em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#slider {
+    /* height: 1.2em; */
+}
+
+#date_label {
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 160%;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-top: 6px;
+    padding: 0 6px;
+    width: 200px;
+}
+
+.fact_chart {
+    height: 40px;
+}
+
+#date_chart {
+    height: 90px;
+}
+
+#daynight_chart {
+    height: 5px;
+}
+
+#magnitude_chart {
+    width: 36px;
+    height: 100%;
+    margin-right: 3em;
+}
+
+svg {
+    vertical-align: top;
+}
+
+#footer {
+    margin: 1em 0 0 0;
+    text-align: center;
+}
+
+#footer ul {
+    list-style-type: none;
+    display: inline-block;
+}
+
+#footer ul li {
+    display: inline-block;
+    margin: 0 3px;
+}
