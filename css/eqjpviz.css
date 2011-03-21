@@ -1,3 +1,7 @@
+svg {
+    vertical-align: top;
+}
+
 #content {
     width: 500px;
 }
@@ -13,10 +17,9 @@
 }
 
 #playback_control {
-    position: relative;
     width: 80%;
     height: 1.2em;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 }
 
 #play {
@@ -56,11 +59,7 @@
 #magnitude_chart {
     width: 36px;
     height: 100%;
-    margin-right: 3em;
-}
-
-svg {
-    vertical-align: top;
+    margin-right: 10px;
 }
 
 #footer {
